@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+/* GOLDEN: #FFEAB6 */
+.wrapper {
+  background-color: #FFEAB6;
+}
+
+.main-panel {
+  background-color: #FFEAB6;
+}
+
+.btn-primary {
+  background-color: #FFCB2C;
+}
+
+.btn-primary:hover {
+  background-color: #000 !important;
+}
