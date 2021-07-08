@@ -8,12 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-  adminLogged;
-  constructor(private router: Router) { }
-  ngOnInit() {
-    this.adminLogged = localStorage.getItem("adminLogged");
-    if (this.adminLogged !== 'true') {
-      this.router.navigate(['/login']);
-    }
-  }
+
+  ngOnInit() { }
+
 }

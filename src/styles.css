@@ -1,15 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 /* GOLDEN: #FFEAB6 */
 .wrapper {
-  background-color: #FFEAB6;
+  background-color: #FFDF00;
 }
 
 .main-panel {
-  background-color: #FFEAB6;
+  background-color: #FFDF00;
 }
 
 .btn-primary {
   background-color: #FFCB2C;
+}
+
+.sidebar .sidebar-wrapper li.active>a:not([data-toggle=collapse]):after,
+.sidebar .sidebar-wrapper li.active>[data-toggle=collapse]+div .nav li:after {
+  border-right: 17px solid #FFDF00;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  right: -17px;
+  opacity: 1;
+  top: 7px;
+  transition: opacity 150ms ease-in;
 }
 
 .btn-primary:hover {

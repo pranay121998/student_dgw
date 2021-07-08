@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,11 @@ export class LoginComponent implements OnInit {
   adminLogged;
 
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.adminLogged = localStorage.getItem("adminLogged");
@@ -26,12 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.loginForm.value.username === 'dgw' && this.loginForm.value.password === 'dgw') {
-      this.router.navigate(['/dashboard']);
-      localStorage.setItem("adminLogged", "true");
-    } else {
-      alert("Wrong Credentials!");
-    }
+    this.auth.SignIn(this.loginForm.value.email, this.loginForm.value.password);
+  }
+
+  signOut() {
+    this.auth.signOut();
   }
 
 }

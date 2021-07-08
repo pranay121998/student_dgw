@@ -9,26 +9,30 @@
               <h5 class="card-title">Admin Login</h5>
             </div>
             <div class="card-body">
-              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <form [formGroup]="loginForm">
                 <div class="row">
-                  <div class="col-md-10 mr-auto ml-auto">
-                    <div class="form-group">
-                      <label>Username</label>
-                      <input type="text" class="form-control" formControlName="username">
+                  <div class="col-md-10 mr-auto ml-auto mb-2">
+                    <div class="input-group">
+                      <div class="input-group-prepend"><span class="input-group-text"><i
+                            class="nc-icon nc-single-02"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Email" formControlName="email" type="text">
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-10 mr-auto ml-auto">
-                    <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" class="form-control" formControlName="password">
+                  <div class="col-md-10 mr-auto ml-auto mt-2">
+                    <div class="input-group">
+                      <div class="input-group-prepend"><span class="input-group-text"><i
+                            class="nc-icon nc-key-25"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Password" formControlName="password" type="password">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="update ml-auto mr-auto">
-                    <button type="submit" class="btn btn-primary btn-round">Login</button>
+                    <button type="button" (click)="onSubmit()" class="btn btn-primary btn-round">Login</button>
                   </div>
                 </div>
               </form>
