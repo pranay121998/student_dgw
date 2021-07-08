@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  //https://firebase.google.com/docs/auth/web/password-auth
+
   user$: Observable<any>;
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
@@ -30,18 +32,6 @@ export class AuthService {
     )
   }
 
-  //Create admin for once in discover real DB, then clean this code
-  //   firebase.auth().createUserWithEmailAndPassword(email, password)
-  //   .then((userCredential) => {
-  //   // Signed in 
-  //   var user = userCredential.user;
-  //   // ...
-  // })
-  //   .catch ((error) => {
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   // ..
-  // });
 
   async SignIn(email, password) {
     this.afAuth.signInWithEmailAndPassword(email, password)
