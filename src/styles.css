@@ -29,3 +29,7 @@
 .btn-primary:hover {
   background-color: #000 !important;
 }
+
+.btn-secondary {
+  background-color: #212120;
+}

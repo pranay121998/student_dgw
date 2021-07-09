@@ -1,12 +1,122 @@
-
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        Google Maps
+        View Course
       </div>
       <div class="card-body ">
-        <div id="map" class="map"></div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-secondary">
+              <th>
+                Course Name
+              </th>
+              <th>Description</th>
+              <th>Thumbnail Image</th>
+              <th>Price</th>
+              <th class="text-center">Intro Video</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Chapters</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.api.items | async;let i = index">
+                <td>
+                  {{item?.name}}
+                </td>
+                <td>
+                  {{item?.description}}
+                </td>
+                <td>
+                  <img src="{{item?.imageUrl}}" height="200px" alt="">
+                </td>
+                <td>{{item?.price}}</td>
+                <td>
+                  <video height="200px" width="200px" controls src="{{item?.video}}">
+                    Your browser does not support the video tag.
+                  </video>
+                </td>
+                <td>
+                  <button (click)="loadId(item?.courseId, item?.name, item?.description, item?.imageUrl, item?.price,
+                    item?.video)" data-toggle="modal" data-target="#exampleModal" class="btn btn-round btn-primary"><i
+                      class="fa fa-pencil" aria-hidden="true"></i></button>
+                </td>
+                <td>
+                  <button (click)="this.api.deleteCourse(item?.courseId)" data-toggle="modal"
+                    data-target="#exampleModal" class="btn btn-round btn-secondary"><i class="fa fa-trash"
+                      aria-hidden="true"></i></button>
+                </td>
+                <td [routerLink]="['/chapters', item?.courseId, item?.name]" class="text-center">View</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Course</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearCourse()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="courseForm">
+          <div class="form-group">
+            <label>Course Name</label>
+            <input type="text" [(ngModel)]="this.courseName" formControlName="name" placeholder="Name of the Course"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea [(ngModel)]="this.courseDesc" formControlName="description" class="form-control"
+              rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="this.coursePrice" formControlName="price" placeholder="Enter Price"
+              class="form-control">
+          </div>
+
+          <label>Thumbnail Image</label>
+          <div class="fileinput fileinput-new" data-provides="fileinput">
+            <input #file1 type="file" accept="image/*" (change)="onFileChanged($event)" />
+          </div>
+          <div class="progress">
+            <div #progress1 class="progress-bar progress-bar-striped bg-success" role="progressbar"
+              [style.width]="(this.api.uploadProgress| async) + '%'"
+              [attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0" aria-valuemax="100">
+              {{this.api.uploadProgress | async}}</div>
+          </div>
+
+          <label>Upload Intro Video</label>
+          <div class="fileinput fileinput-new" data-provides="fileinput">
+            <input #file2 type="file" accept="video/*" (change)="onFileChanged2($event)" />
+          </div>
+          <div class="progress">
+            <div #progress2 class="progress-bar progress-bar-striped bg-success" role="progressbar"
+              [style.width]="(this.api.uploadProgress2| async) + '%'"
+              [attr.aria-valuenow]="(this.api.uploadProgress2| async)" aria-valuemin="0" aria-valuemax="100">
+              {{this.api.uploadProgress2 | async}}</div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div *ngIf="this.downloadUrl" class="text-secondary">Image Upload Successful, You can update Course Now</div>
+        <div *ngIf="this.downloadUrl2" class="text-secondary">Video Upload Successful, You can update Course Now</div>
+        <div></div>
+        <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-round" (click)="updateCourse()">Update
+          Course</button>
       </div>
     </div>
   </div>

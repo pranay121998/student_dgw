@@ -6,3 +6,8 @@ export interface Course {
     video: string;
 }
 
+export class Chapter {
+    name: string;
+    video: string;
+}
+

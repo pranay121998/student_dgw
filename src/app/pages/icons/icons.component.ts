@@ -21,9 +21,13 @@ export class IconsComponent {
 
     @ViewChild('file2') file2: ElementRef;
 
+    @ViewChild('file3') file3: ElementRef;
+
     @ViewChild('progress1') progress1: ElementRef;
 
     @ViewChild('progress2') progress2: ElementRef;
+
+    @ViewChild('progress3') progress3: ElementRef;
 
     enabled = false;
 
@@ -31,9 +35,13 @@ export class IconsComponent {
 
     downloadUrl2;
 
+    downloadUrl3;
+
     files: any;
 
     courseForm: FormGroup;
+
+    chapterForm: FormGroup;
 
     constructor(
         public api: ApiService,
@@ -46,13 +54,14 @@ export class IconsComponent {
             imageUrl: ['', Validators.required],
             video: ['', Validators.required],
         });
+
+        this.chapterForm = this.fb.group({
+            name: ['', Validators.required],
+            video: ['', Validators.required]
+        })
     }
 
     ngOnInit(): void {
-        this.api.getCourses().pipe().subscribe(res => {
-            this.getCourses = res;
-            console.log(res.docs[0].data());
-        });
     }
 
     reset() {
@@ -93,6 +102,12 @@ export class IconsComponent {
         console.log(this.downloadUrl2);
     }
 
+    onFileChanged3 = async (event) => {
+        this.api.onFileChanged3(event);
+        await this.api.apiData3$.subscribe(url => this.downloadUrl3 = url);
+        console.log(this.downloadUrl3);
+    }
+
     uploadCourse() {
         this.api.addCourse(this.courseForm.value, this.downloadUrl, this.downloadUrl2).then(() => {
             this.courseForm.reset();
@@ -105,5 +120,25 @@ export class IconsComponent {
             this.downloadUrl = null;
             this.downloadUrl2 = null;
         });
+    }
+
+    courseId;
+
+    passCourseId(id) {
+        this.courseId = id;
+    }
+
+    addChapter(id) {
+        this.api.addChapter(id, this.chapterForm.value, this.downloadUrl3).then(() => {
+            this.clearChapter();
+        });
+    }
+
+    clearChapter() {
+        this.chapterForm.reset();
+        this.file3.nativeElement.value = "";
+        this.api.uploadProgress3 = new Observable<0>();
+        this.progress3.nativeElement.style.width = "0%";
+        this.downloadUrl3 = null;
     }
 }

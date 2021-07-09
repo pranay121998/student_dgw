@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card demo-icons">
       <div class="card-header">
-        <h5 class="card-title">Add Or View Courses</h5>
+        <h5 class="card-title">Add Course Or Chapter</h5>
         <p class="card-category"></p>
       </div>
     </div>
@@ -28,7 +28,7 @@
           </div>
 
           <label>Thumbnail Image</label>
-          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+          <div class="fileinput fileinput-new" data-provides="fileinput">
             <input #file1 type="file" accept="image/*" (change)="onFileChanged($event)" />
           </div>
           <div class="progress">
@@ -39,7 +39,7 @@
           </div>
 
           <label>Upload Intro Video</label>
-          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+          <div class="fileinput fileinput-new" data-provides="fileinput">
             <input #file2 type="file" accept="video/*" (change)="onFileChanged2($event)" />
           </div>
           <div class="progress">
@@ -75,32 +75,67 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">View Courses</h6>
+        <h6 class="card-title">Add Chapter</h6>
         <div class="table-responsive">
           <table class="table">
-            <thead class=" text-primary">
+            <thead class=" text-secondary">
               <th>
-                Name
+                Course Name
               </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
+              <th>Add Chapter</th>
             </thead>
             <tbody>
               <tr *ngFor="let item of this.api.items | async;let i = index">
                 <td>
-
+                  {{item?.name}}
                 </td>
-
+                <td class="text-center"><button (click)="passCourseId(item?.courseId)" data-toggle="modal"
+                    data-target="#exampleModal" class="btn btn-round btn-primary"><i class="fa fa-plus"
+                      aria-hidden="true"></i></button>
+                </td>
               </tr>
             </tbody>
           </table>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Chapter</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearChapter()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="chapterForm">
+                    <div class="form-group">
+                      <label>Chapter Name</label>
+                      <input type="text" formControlName="name" placeholder="Name of the Chapter" class="form-control">
+                    </div>
+                    <label>Chapter Video</label>
+                    <div>
+                      <input #file3 type="file" accept="video/*" (change)="onFileChanged3($event)">
+                    </div>
+                    <div class="progress">
+                      <div #progress3 class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                        [style.width]="(this.api.uploadProgress3| async) + '%'"
+                        [attr.aria-valuenow]="(this.api.uploadProgress3| async)" aria-valuemin="0" aria-valuemax="100">
+                        {{this.api.uploadProgress3 | async}}</div>
+                    </div>
+
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal"
+                    (click)="clearChapter()">Close</button>
+                  <button [disabled]="!this.downloadUrl3" type="button" (click)="addChapter(courseId)"
+                    class="btn btn-primary btn-round">Add
+                    Chapter</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

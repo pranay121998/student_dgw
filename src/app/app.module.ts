@@ -17,12 +17,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "environments/environment";
+import { ChaptersComponent } from './pages/chapters/chapters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    ChaptersComponent
   ],
   imports: [
     ReactiveFormsModule,
