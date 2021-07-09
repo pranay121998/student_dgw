@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { map } from 'rxjs/operators';
+import { Course } from 'app/model/course';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,13 @@ export class ApiService {
   downloadableURL2 = '';
   uploadProgress2: Observable<number>;
 
-  constructor(private afs: AngularFirestore, public afStorage: AngularFireStorage) { }
+  itemCollection: AngularFirestoreCollection<Course>;
+  items: Observable<Course[]>
+
+  constructor(private afs: AngularFirestore, public afStorage: AngularFireStorage) {
+    this.itemCollection = this.afs.collection<Course>("courses");
+    this.items = this.itemCollection.valueChanges();
+  }
 
   // don't use "any", type your data instead!
   private apiData = new BehaviorSubject<any>(null);
@@ -74,6 +81,36 @@ export class ApiService {
     }
   }
 
+  addCourse(course: Course, imageUrl, videoUrl) {
+    return this.afs.collection("courses").add({
+      name: course.name,
+      description: course.description,
+      price: course.price,
+      imageUrl: imageUrl,
+      video: videoUrl
+    }).then(res => {
+      console.log("Course Added");
+      this.afs.collection("courses").doc(res.id).update({
+        courseId: res.id
+      }).then(() => {
+        console.log("courseId Added");
+
+      })
+    }).catch(err => {
+      console.log("Error Code: " + err.code);
+      console.log("Error MEssage: " + err.message);
+      this.afs.collection("errorLog").add({
+        errorCode: err.code,
+        errorMessage: err.message
+      })
+    })
+  }
+
+
+
+  getCourses() {
+    return this.afs.collection<Course>("courses").get();
+  }
 
 
 }

@@ -6,12 +6,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyDE93QtepTc870Qi8NFeLLofFP9tL6_EQY",
-    authDomain: "discover-test-e0515.firebaseapp.com",
-    projectId: "discover-test-e0515",
-    storageBucket: "discover-test-e0515.appspot.com",
-    messagingSenderId: "1015666477513",
-    appId: "1:1015666477513:web:58054ea658b54da2a00018",
-    measurementId: "G-C3WFDJRMHY"
+    apiKey: "AIzaSyDEdTeXai7LKOP4SBwl0GvExxi0Ee7_ZAc",
+    authDomain: "discover-genius-within.firebaseapp.com",
+    projectId: "discover-genius-within",
+    storageBucket: "discover-genius-within.appspot.com",
+    messagingSenderId: "979270263128",
+    appId: "1:979270263128:web:616b7f6a6c89a9fb48052d",
+    measurementId: "G-PVR064QSTM"
   }
 };

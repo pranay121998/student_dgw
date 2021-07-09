@@ -32,7 +32,6 @@ export class AuthService {
     )
   }
 
-
   async SignIn(email, password) {
     this.afAuth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {

@@ -5,3 +5,4 @@ export interface Course {
     imageUrl: string;
     video: string;
 }
+

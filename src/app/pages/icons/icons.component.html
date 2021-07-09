@@ -13,26 +13,26 @@
     <div class="card">
       <div class="card-body">
         <h6 class="card-title">Add a Course</h6>
-        <form>
+        <form [formGroup]="courseForm">
           <div class="form-group">
             <label>Course Name</label>
-            <input type="text" placeholder="Name of the Course" class="form-control">
+            <input type="text" formControlName="name" placeholder="Name of the Course" class="form-control">
           </div>
           <div class="form-group">
             <label>Description</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea formControlName="description" class="form-control" rows="3"></textarea>
           </div>
           <div class="form-group">
             <label>Price</label>
-            <input type="number" placeholder="Enter Price" class="form-control">
+            <input type="number" formControlName="price" placeholder="Enter Price" class="form-control">
           </div>
 
           <label>Thumbnail Image</label>
           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-            <input #file type="file" accept="image/*" (change)="onFileChanged($event)" />
+            <input #file1 type="file" accept="image/*" (change)="onFileChanged($event)" />
           </div>
           <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+            <div #progress1 class="progress-bar progress-bar-striped bg-success" role="progressbar"
               [style.width]="(this.api.uploadProgress| async) + '%'"
               [attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0" aria-valuemax="100">
               {{this.api.uploadProgress | async}}</div>
@@ -40,16 +40,17 @@
 
           <label>Upload Intro Video</label>
           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-            <input #file type="file" accept="video/*" (change)="onFileChanged2($event)" />
+            <input #file2 type="file" accept="video/*" (change)="onFileChanged2($event)" />
           </div>
           <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+            <div #progress2 class="progress-bar progress-bar-striped bg-success" role="progressbar"
               [style.width]="(this.api.uploadProgress2| async) + '%'"
               [attr.aria-valuenow]="(this.api.uploadProgress2| async)" aria-valuemin="0" aria-valuemax="100">
               {{this.api.uploadProgress2 | async}}</div>
           </div>
 
-          <button class="btn button-primary btn-round" type="button" (click)="uploadCourse()">Upload</button>
+          <button [disabled]="!(this.downloadUrl && this.downloadUrl2)" class="btn button-primary btn-round"
+            type="button" (click)="uploadCourse()">Upload</button>
 
           <!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput">
             <div class="fileinput-new thumbnail">
@@ -75,6 +76,32 @@
     <div class="card">
       <div class="card-body">
         <h6 class="card-title">View Courses</h6>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Name
+              </th>
+              <th>
+                Country
+              </th>
+              <th>
+                City
+              </th>
+              <th class="text-right">
+                Salary
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.api.items | async;let i = index">
+                <td>
+
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
