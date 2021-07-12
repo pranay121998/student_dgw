@@ -6,6 +6,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { map } from 'rxjs/operators';
 import { Chapter, Course } from 'app/model/course';
+import { Users } from 'app/model/users';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,16 +32,25 @@ export class ApiService {
   uploadProgress3: Observable<number>;
 
   itemCollection: AngularFirestoreCollection<Course>;
-  items: Observable<Course[]>
+  items: Observable<Course[]>;
 
-  chapterCollection: AngularFirestoreCollection<Chapter>
-  chapters: Observable<Chapter[]>
+  chapterCollection: AngularFirestoreCollection<Chapter>;
+  chapters: Observable<Chapter[]>;
+
+  userCollection: AngularFirestoreCollection<Users>;
+  users: Observable<Users[]>;
 
   nameofCourse = "dev-course";
+  nameofusers = "users"
+
+  singleUser;
 
   constructor(private afs: AngularFirestore, public afStorage: AngularFireStorage) {
     this.itemCollection = this.afs.collection<Course>(this.nameofCourse);
     this.items = this.itemCollection.valueChanges();
+
+    this.userCollection = this.afs.collection<Users>(this.nameofusers);
+    this.users = this.userCollection.valueChanges();
   }
 
   // don't use "any", type your data instead!
@@ -166,6 +176,10 @@ export class ApiService {
   getSubCollection(id) {
     this.chapterCollection = this.afs.collection<Course>(this.nameofCourse).doc(id).collection<Chapter>("chapters");
     return this.chapterCollection.valueChanges();
+  }
+
+  getSingleUser(id) {
+    return this.singleUser = this.userCollection.doc(id).valueChanges();
   }
 
   updateCourse(courseId, course: Course, image1, image2, video1, video2) {

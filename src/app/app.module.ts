@@ -24,7 +24,7 @@ import { ChaptersComponent } from './pages/chapters/chapters.component';
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    ChaptersComponent
+    ChaptersComponent,
   ],
   imports: [
     ReactiveFormsModule,
