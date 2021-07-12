@@ -47,7 +47,7 @@ export class MapsComponent implements OnInit {
     onFileChanged = async (event) => {
         this.api.onFileChanged(event);
         await this.api.apiData$.subscribe(url => this.downloadUrl = url);
-        console.log(this.downloadUrl2);
+        console.log(this.downloadUrl);
     }
 
     onFileChanged2 = async (event) => {
@@ -67,6 +67,8 @@ export class MapsComponent implements OnInit {
         this.courseImg = image;
         this.coursePrice = price;
         this.courseVideo = video;
+        console.log("Image Video: " + this.courseImg)
+        console.log("Course Video: " + this.courseVideo)
     }
 
     clearCourse() {

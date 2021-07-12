@@ -36,8 +36,10 @@ export class ApiService {
   chapterCollection: AngularFirestoreCollection<Chapter>
   chapters: Observable<Chapter[]>
 
+  nameofCourse = "dev-course";
+
   constructor(private afs: AngularFirestore, public afStorage: AngularFireStorage) {
-    this.itemCollection = this.afs.collection<Course>("courses");
+    this.itemCollection = this.afs.collection<Course>(this.nameofCourse);
     this.items = this.itemCollection.valueChanges();
   }
 
@@ -113,7 +115,7 @@ export class ApiService {
   }
 
   addCourse(course: Course, imageUrl, videoUrl) {
-    return this.afs.collection("courses").add({
+    return this.afs.collection(this.nameofCourse).add({
       name: course.name,
       description: course.description,
       price: course.price,
@@ -121,7 +123,7 @@ export class ApiService {
       video: videoUrl
     }).then(res => {
       console.log("Course Added");
-      this.afs.collection("courses").doc(res.id).update({
+      this.afs.collection(this.nameofCourse).doc(res.id).update({
         courseId: res.id
       }).then(() => {
         console.log("courseId Added");
@@ -138,12 +140,12 @@ export class ApiService {
   }
 
   addChapter(id, chapter: Chapter, video) {
-    return this.afs.collection('courses').doc(id).collection('chapters').add({
+    return this.afs.collection(this.nameofCourse).doc(id).collection('chapters').add({
       name: chapter.name,
       video: video
     }).then(res => {
       console.log("Chapter Added");
-      this.afs.collection("courses").doc(id).collection('chapters').doc(res.id).update({
+      this.afs.collection(this.nameofCourse).doc(id).collection('chapters').doc(res.id).update({
         chapterId: res.id
       }).then(() => {
         console.log("chapterId Added");
@@ -162,18 +164,18 @@ export class ApiService {
   }
 
   getSubCollection(id) {
-    this.chapterCollection = this.afs.collection<Course>("courses").doc(id).collection<Chapter>("chapters");
+    this.chapterCollection = this.afs.collection<Course>(this.nameofCourse).doc(id).collection<Chapter>("chapters");
     return this.chapterCollection.valueChanges();
   }
 
   updateCourse(courseId, course: Course, image1, image2, video1, video2) {
-    this.itemCollection = this.afs.collection<Course>("courses");
-    if (course.imageUrl === "") {
+    this.itemCollection = this.afs.collection<Course>(this.nameofCourse);
+    if (!image2) {
       course.imageUrl = image1;
     } else {
       course.imageUrl = image2;
     }
-    if (course.video === "") {
+    if (!video2) {
       course.video = video1;
     } else {
       course.video = video2;
@@ -199,7 +201,7 @@ export class ApiService {
   }
 
   updateChapter(courseId, chapterId, chapter: Chapter, video, video2) {
-    this.chapterCollection = this.afs.collection<Course>("courses").doc(courseId).collection<Chapter>("chapters");
+    this.chapterCollection = this.afs.collection<Course>(this.nameofCourse).doc(courseId).collection<Chapter>("chapters");
     if (chapter.video === "") {
       chapter.video = video2;
     } else {
@@ -239,7 +241,7 @@ export class ApiService {
   }
 
   deleteChapter(courseId, chapterId) {
-    this.chapterCollection = this.afs.collection<Course>("courses").doc(courseId).collection<Chapter>("chapters");
+    this.chapterCollection = this.afs.collection<Course>(this.nameofCourse).doc(courseId).collection<Chapter>("chapters");
     return this.chapterCollection.doc(chapterId).delete().then(() => {
       console.log("Operation Successful");
     }).catch(err => {
