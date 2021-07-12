@@ -45,7 +45,8 @@
                   <button (click)="this.api.deleteCourse(item?.courseId)" class="btn btn-round btn-secondary"><i
                       class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
-                <td [routerLink]="['/chapters', item?.courseId, item?.name]" class="text-center">View</td>
+                <td class="text-center">
+                  <a class="text-secondary" [routerLink]="['/chapters', item?.courseId, item?.name]">View</a></td>
               </tr>
             </tbody>
           </table>

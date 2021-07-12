@@ -8,7 +8,7 @@
 
         <div class="table-responsive">
           <table class="table">
-            <thead class=" text-primary">
+            <thead class="text-secondary">
               <th>
                 Name
               </th>
@@ -39,7 +39,9 @@
                 <td *ngIf="user.name != 'admin'">
                   {{user?.number}}
                 </td>
-                <td *ngIf="user.name != 'admin'" [routerLink]="['/user', user?.uid]">View</td>
+                <td>
+                  <a *ngIf="user.name != 'admin'" [routerLink]="['/user', user?.uid]" class="text-secondary">View</a>
+                </td>
               </tr>
             </tbody>
           </table>

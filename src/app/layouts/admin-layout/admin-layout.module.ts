@@ -14,7 +14,6 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UsersComponent } from 'app/pages/users/users.component';
 
 @NgModule({
   imports: [
@@ -32,7 +31,6 @@ import { UsersComponent } from 'app/pages/users/users.component';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UsersComponent
   ]
 })
 

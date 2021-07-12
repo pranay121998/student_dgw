@@ -37,3 +37,12 @@
 .btn-secondary {
   background-color: #212120;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-golden-yellow,
+.text-golden-yellow:hover {
+  color: #FFDF00;
+}
