@@ -12,12 +12,18 @@ import { take } from 'rxjs/operators';
 export class UserComponent implements OnInit {
     uniqueId;
     userDetails;
+    items;
+    courses;
     constructor(private route: ActivatedRoute, private api: ApiService) { }
     ngOnInit() {
         this.uniqueId = this.route.snapshot.paramMap.get('id');
-        this.api.getSingleUser(this.uniqueId).pipe(take(1)).subscribe(res => {
+        this.api.getSingleUser(this.uniqueId).pipe(take(1)).subscribe(userRes => {
             // console.log(res);
-            this.userDetails = res;
+            this.userDetails = userRes;
         });
+        this.api.getCourse().pipe(take(1)).subscribe(res => {
+            this.courses = res;
+        })
+
     }
 }

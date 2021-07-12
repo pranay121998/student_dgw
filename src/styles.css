@@ -26,9 +26,13 @@
   transition: opacity 150ms ease-in;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:disabled {
   background-color: #000 !important;
 }
+
+
 
 .btn-secondary {
   background-color: #212120;

@@ -26,6 +26,8 @@ export class ChaptersComponent implements OnInit {
 
   video;
 
+  watchers;
+
   @ViewChild('file3') file3: ElementRef;
 
   @ViewChild('progress3') progress3: ElementRef;
@@ -41,7 +43,7 @@ export class ChaptersComponent implements OnInit {
     this.uniqueId = this.route.snapshot.paramMap.get('id');
     this.uniqueName = this.route.snapshot.paramMap.get('name');
     this.api.getSubCollection(this.uniqueId).pipe().subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.chapters = res;
     });
   }
@@ -51,7 +53,17 @@ export class ChaptersComponent implements OnInit {
   }
 
   deleteChapter(chapterId) {
-    this.api.deleteChapter(this.uniqueId, chapterId);
+    if (window.confirm('Are sure you want to delete this chapter ?')) {
+      this.api.deleteChapter(this.uniqueId, chapterId);
+    }
+
+  }
+
+  getSingleChapter(id) {
+    this.api.getSingleChapter(this.uniqueId, id).pipe(take(1)).subscribe(res => {
+      console.log(res['watched']);
+      this.watchers = res['watched'];
+    })
   }
 
   passChapterName(name, id, video) {

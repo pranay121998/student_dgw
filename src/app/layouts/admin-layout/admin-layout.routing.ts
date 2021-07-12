@@ -12,10 +12,10 @@ import { ChaptersComponent } from 'app/pages/chapters/chapters.component';
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user/:id', component: UserComponent },
-    { path: 'table', component: TableComponent },
+    { path: 'users', component: TableComponent },
     { path: 'typography', component: TypographyComponent },
-    { path: 'icons', component: IconsComponent },
-    { path: 'maps', component: MapsComponent },
+    { path: 'add', component: IconsComponent },
+    { path: 'view', component: MapsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: 'chapters/:id/:name', component: ChaptersComponent },
 ];

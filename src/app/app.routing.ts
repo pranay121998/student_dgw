@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'add',
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
@@ -28,7 +28,7 @@ export const AppRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: 'add',
     canActivate: [AuthGuard]
   }
 ]

@@ -9,14 +9,14 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard', icon: 'nc-bank', class: '' },
-    { path: '/icons', title: 'Add Course', icon: 'nc-diamond', class: '' },
-    { path: '/maps', title: 'View Course', icon: 'nc-pin-3', class: '' },
-    { path: '/notifications', title: 'Notifications', icon: 'nc-bell-55', class: '' },
+    //{ path: '/dashboard', title: 'Dashboard', icon: 'nc-bank', class: '' },
+    { path: '/add', title: 'Add Course', icon: 'nc-book-bookmark', class: '' },
+    { path: '/view', title: 'View Course', icon: 'nc-map-big', class: '' },
+    //{ path: '/notifications', title: 'Notifications', icon: 'nc-bell-55', class: '' },
     // { path: '/user', title: 'User Profile', icon: 'nc-single-02', class: '' },
-    { path: '/table', title: 'Table List', icon: 'nc-tile-56', class: '' },
-    { path: '/typography', title: 'Typography', icon: 'nc-caps-small', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO', icon: 'nc-spaceship', class: 'active-pro' },
+    { path: '/users', title: 'Users', icon: 'nc-circle-10', class: '' },
+    // { path: '/typography', title: 'Typography', icon: 'nc-caps-small', class: '' },
+    //{ path: '/upgrade', title: 'Upgrade to PRO', icon: 'nc-spaceship', class: 'active-pro' },
 ];
 
 @Component({

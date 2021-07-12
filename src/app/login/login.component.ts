@@ -10,8 +10,6 @@ import { AuthService } from 'app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  adminLogged;
-
   loginForm = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -20,10 +18,6 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.adminLogged = localStorage.getItem("adminLogged");
-    if (this.adminLogged === 'true') {
-      this.router.navigate(['/dashboard']);
-    }
   }
 
   onSubmit() {

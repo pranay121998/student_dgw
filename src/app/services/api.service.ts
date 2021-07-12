@@ -182,6 +182,20 @@ export class ApiService {
     return this.singleUser = this.userCollection.doc(id).valueChanges();
   }
 
+  getSingleChapter(courseId, chapterId) {
+    this.chapterCollection = this.afs.collection<Course>(this.nameofCourse).doc(courseId).collection<Chapter>("chapters");
+    return this.chapterCollection.doc(chapterId).valueChanges();
+  }
+
+  // getCourseByuser(userId) {
+  //   this.chapterCollection = this.afs.collection<Course>(this.nameofCourse, ref => ref.where('buyers[]', '==', userId));
+  // }
+
+  getCourse() {
+    this.itemCollection = this.afs.collection<Course>(this.nameofCourse, ref => ref.orderBy('buyers'));
+    return this.itemCollection.valueChanges();
+  }
+
   updateCourse(courseId, course: Course, image1, image2, video1, video2) {
     this.itemCollection = this.afs.collection<Course>(this.nameofCourse);
     if (!image2) {
@@ -240,18 +254,20 @@ export class ApiService {
   }
 
   deleteCourse(id) {
-    return this.itemCollection.doc(id).delete().then(() => {
-      console.log("Delete Course Operation Successful");
-    }).catch(err => {
-      console.log(err.code);
-      console.log(err.message);
-      this.afs.collection("errorLog").add({
-        errorCode: err.code,
-        errorMessage: err.message,
-        courseId: id,
-        errorAt: "Course Delete",
-      })
-    });;
+    if (window.confirm('Are sure you want to delete this Course ?')) {
+      return this.itemCollection.doc(id).delete().then(() => {
+        console.log("Delete Course Operation Successful");
+      }).catch(err => {
+        console.log(err.code);
+        console.log(err.message);
+        this.afs.collection("errorLog").add({
+          errorCode: err.code,
+          errorMessage: err.message,
+          courseId: id,
+          errorAt: "Course Delete",
+        })
+      });
+    }
   }
 
   deleteChapter(courseId, chapterId) {

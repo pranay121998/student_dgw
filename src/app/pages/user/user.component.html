@@ -47,78 +47,31 @@
         </div>
       </div> -->
     </div>
-    <!-- <div class="card">
+    <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Team Members</h4>
+        <h4 class="card-title">Courses Purchased</h4>
       </div>
       <div class="card-body">
         <ul class="list-unstyled team-members">
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
+          <li *ngFor="let course of courses; let i = index">
+            <div class="row" *ngFor="let buyer of course.buyers; let j = index">
+              <div class="col-md-2 col-2" *ngIf="course['buyers'][j] === uniqueId">
                 <div class="avatar">
-                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image"
-                    class="img-circle img-no-padding img-responsive">
+                  <img src="{{course.imageUrl}}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
               </div>
-              <div class="col-md-7 col-7">
-                DJ Khaled
+              <div class="col-md-7 col-7" *ngIf="course['buyers'][j] === uniqueId">
+                {{course.name}}
                 <br />
                 <span class="text-muted">
-                  <small>Offline</small>
+                  <small></small>
                 </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                    class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/joe-gardner-2.jpg" alt="Circle Image"
-                    class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                Creative Tim
-                <br />
-                <span class="text-success">
-                  <small>Available</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                    class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image"
-                    class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-ms-7 col-7">
-                Flume
-                <br />
-                <span class="text-danger">
-                  <small>Busy</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                    class="fa fa-envelope"></i></button>
               </div>
             </div>
           </li>
         </ul>
       </div>
-    </div> -->
+    </div>
   </div>
   <div class="col-md-8">
     <div class="card card-user">

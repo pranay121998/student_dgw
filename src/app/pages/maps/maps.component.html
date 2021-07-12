@@ -42,9 +42,8 @@
                       class="fa fa-pencil" aria-hidden="true"></i></button>
                 </td>
                 <td>
-                  <button (click)="this.api.deleteCourse(item?.courseId)" data-toggle="modal"
-                    data-target="#exampleModal" class="btn btn-round btn-secondary"><i class="fa fa-trash"
-                      aria-hidden="true"></i></button>
+                  <button (click)="this.api.deleteCourse(item?.courseId)" class="btn btn-round btn-secondary"><i
+                      class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
                 <td [routerLink]="['/chapters', item?.courseId, item?.name]" class="text-center">View</td>
               </tr>

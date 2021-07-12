@@ -14,6 +14,7 @@
               <th>Video</th>
               <th>Edit</th>
               <th>Delete</th>
+              <!-- <th>Watched</th> -->
             </thead>
             <tbody>
               <tr *ngFor="let chapter of chapters;let i = index">
@@ -30,9 +31,12 @@
                       class="fa fa-pencil" aria-hidden="true"></i></button>
                 </td>
                 <td>
-                  <button (click)="deleteChapter(chapter.chapterId)" data-toggle="modal" data-target="#exampleModal"
-                    class="btn btn-round btn-secondary"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  <button (click)="deleteChapter(chapter.chapterId)" class="btn btn-round btn-secondary"><i
+                      class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
+                <!-- <td (click)="getSingleChapter(chapter?.chapterId)" data-toggle="modal" data-target="#watchedModal">
+                  View
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -42,7 +46,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Edit Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -84,3 +88,35 @@
     </div>
   </div>
 </div>
+
+
+<!-- Watched Modal -->
+<!-- <div class="modal fade" id="watchedModal" tabindex="-1" role="dialog" aria-labelledby="watchedModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="watchedModalLabel">Users Who Watched</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-secondary">
+              <th></th>
+              <th>Name</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let watch of watchers;let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{watch}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

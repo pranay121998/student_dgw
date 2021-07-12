@@ -38,7 +38,7 @@ export class AuthService {
         // Signed in
         var user = userCredential.user;
         console.log(user.uid);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/add']);
       })
       .catch((error) => {
         var errorCode = error.code;
