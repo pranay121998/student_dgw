@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h5>{{uniqueName}}</h5>
+      </div>
+      <div class="card-body ">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-secondary">
+              <th>
+                PDF Name
+              </th>
+              <th>PDF</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <!-- <th>Watched</th> -->
+            </thead>
+            <tbody>
+              <tr *ngFor="let pdf of pdfs;let i = index">
+                <td>
+                  {{pdf?.name}}
+                </td>
+                <td>
+                  <a href="{{pdf?.pdf}}">See</a>
+                </td>
+                <td>
+                  <button (click)="passPDFName(pdf?.name, pdf?.pdfId, pdf?.pdf)" data-toggle="modal"
+                    data-target="#exampleModal" class="btn btn-round btn-primary"><i class="fa fa-pencil"
+                      aria-hidden="true"></i></button>
+                </td>
+                <td>
+                  <button (click)="deletePDF(pdf.pdfId)" class="btn btn-round btn-secondary"><i class="fa fa-trash"
+                      aria-hidden="true"></i></button>
+                </td>
+                <!-- <td (click)="getSingleChapter(chapter?.chapterId)" data-toggle="modal" data-target="#watchedModal">
+                  View
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit PDF</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearPDFName()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="pdfForm">
+          <div class="form-group">
+            <label>PDF Name</label>
+            <input type="text" formControlName="name" [(ngModel)]="this.pdfName" placeholder="Name of the PDF"
+              class="form-control">
+          </div>
+          <label>Upload PDF</label>
+          <div>
+            <input #file type="file" accept="pdf" (change)="onFileChanged($event)">
+          </div>
+          <div class="progress">
+            <div #progress class="progress-bar progress-bar-striped bg-success" role="progressbar"
+              [style.width]="(this.api.uploadProgress| async) + '%'"
+              [attr.aria-valuenow]="(this.api.uploadProgress| async)" aria-valuemin="0" aria-valuemax="100">
+              {{this.api.uploadProgress | async}}</div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div *ngIf="this.downloadUrl !== null" class="text-secondary">PDF Upload Successful, You can update PDF Now
+        </div>
+        <div></div>
+        <button (click)="clearPDFName()" type="button" class="btn btn-secondary btn-round"
+          data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-round" (click)="updatePDF()">Update
+          PDF</button>
+      </div>
+    </div>
+  </div>
+</div>

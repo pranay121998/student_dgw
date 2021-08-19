@@ -18,6 +18,8 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "environments/environment";
 import { ChaptersComponent } from './pages/chapters/chapters.component';
+import { AudioComponent } from './pages/audio/audio.component';
+import { PdfsComponent } from './pages/pdfs/pdfs.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ChaptersComponent } from './pages/chapters/chapters.component';
     AdminLayoutComponent,
     LoginComponent,
     ChaptersComponent,
+    AudioComponent,
+    PdfsComponent,
   ],
   imports: [
     ReactiveFormsModule,

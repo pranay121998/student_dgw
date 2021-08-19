@@ -8,6 +8,8 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { ChaptersComponent } from 'app/pages/chapters/chapters.component';
+import { AudioComponent } from 'app/pages/audio/audio.component';
+import { PdfsComponent } from 'app/pages/pdfs/pdfs.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -18,4 +20,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'view', component: MapsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: 'chapters/:id/:name', component: ChaptersComponent },
+    { path: 'audios/:id/:name', component: AudioComponent },
+    { path: 'pdfs/:id/:name', component: PdfsComponent },
 ];

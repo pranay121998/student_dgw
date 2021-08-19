@@ -78,7 +78,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <div *ngIf="this.downloadUrl3" class="text-secondary">Video Upload Successful, You can update Chapter Now</div>
+        <div *ngIf="this.downloadUrl3 !== null" class="text-secondary">Video Upload Successful, You can update Chapter
+          Now</div>
         <div></div>
         <button (click)="clearChapterName()" type="button" class="btn btn-secondary btn-round"
           data-dismiss="modal">Close</button>

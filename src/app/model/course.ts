@@ -11,3 +11,12 @@ export class Chapter {
     video: string;
 }
 
+export class Audio {
+    name: string;
+    audio: string;
+}
+
+export class PDF {
+    name: string;
+    pdf: string;
+}

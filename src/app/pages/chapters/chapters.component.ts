@@ -17,12 +17,12 @@ export class ChaptersComponent implements OnInit {
 
   chapters;
 
-  chapterForm: FormGroup
+  chapterForm: FormGroup;
 
   chapterName;
   chapterID;
 
-  downloadUrl3;
+  downloadUrl3 = null;
 
   video;
 

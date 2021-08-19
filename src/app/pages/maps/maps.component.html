@@ -18,6 +18,8 @@
               <th>Edit</th>
               <th>Delete</th>
               <th>Chapters</th>
+              <th>Audios</th>
+              <th>PDF's</th>
             </thead>
             <tbody>
               <tr *ngFor="let item of this.api.items | async;let i = index">
@@ -47,6 +49,10 @@
                 </td>
                 <td class="text-center">
                   <a class="text-secondary" [routerLink]="['/chapters', item?.courseId, item?.name]">View</a></td>
+                <td class="text-center">
+                  <a class="text-secondary" [routerLink]="['/audios', item?.courseId, item?.name]">View</a></td>
+                <td class="text-center">
+                  <a class="text-secondary" [routerLink]="['/pdfs', item?.courseId, item?.name]">View</a></td>
               </tr>
             </tbody>
           </table>
