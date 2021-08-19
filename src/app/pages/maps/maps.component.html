@@ -15,6 +15,7 @@
               <th>Thumbnail Image</th>
               <th>Price</th>
               <th class="text-center">Intro Video</th>
+              <th>Upcoming</th>
               <th>Edit</th>
               <th>Delete</th>
               <th>Chapters</th>
@@ -38,10 +39,11 @@
                     Your browser does not support the video tag.
                   </video>
                 </td>
+                <td class="text-center">{{item?.upcomming}}</td>
                 <td>
                   <button (click)="loadId(item?.courseId, item?.name, item?.description, item?.imageUrl, item?.price,
-                    item.video)" data-toggle="modal" data-target="#exampleModal" class="btn btn-round btn-primary"><i
-                      class="fa fa-pencil" aria-hidden="true"></i></button>
+                    item.video, item?.upcomming)" data-toggle="modal" data-target="#exampleModal"
+                    class="btn btn-round btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                 </td>
                 <td>
                   <button (click)="this.api.deleteCourse(item?.courseId)" class="btn btn-round btn-secondary"><i
@@ -112,6 +114,16 @@
               [style.width]="(this.api.uploadProgress2| async) + '%'"
               [attr.aria-valuenow]="(this.api.uploadProgress2| async)" aria-valuemin="0" aria-valuemax="100">
               {{this.api.uploadProgress2 | async}}</div>
+          </div>
+
+          <br>
+          <div class="form-group">
+            Upcoming:
+            <label class="switch">
+              <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="isChecked"
+                (change)="getStats($event)">
+              <span class="slider round"></span>
+            </label>
           </div>
 
         </form>

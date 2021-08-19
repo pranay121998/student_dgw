@@ -49,6 +49,14 @@
               {{this.api.uploadProgress2 | async}}</div>
           </div>
 
+          <br>
+          <div class="form-group">
+            Upcoming:
+            <label class="switch">
+              <input type="checkbox" (change)="getStats($event)">
+              <span class="slider round"></span>
+            </label>
+          </div>
 
 
           <button [disabled]="!(this.downloadUrl && this.downloadUrl2)" class="btn button-primary btn-round"

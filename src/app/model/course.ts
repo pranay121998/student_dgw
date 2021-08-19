@@ -4,6 +4,7 @@ export interface Course {
     price: string;
     imageUrl: string;
     video: string;
+    upcomming: boolean;
 }
 
 export class Chapter {

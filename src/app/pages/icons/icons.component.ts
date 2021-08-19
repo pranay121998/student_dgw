@@ -13,6 +13,8 @@ export class IconsComponent {
 
     getCourses;
 
+    isChecked = false;
+
     public imagePath;
     imgURL: any;
     public message: string;
@@ -134,8 +136,13 @@ export class IconsComponent {
         console.log(this.downloadUrl5);
     }
 
+    getStats(event: Event) {
+        console.log(event.target["checked"]);
+        this.isChecked = event.target["checked"];
+    }
+
     uploadCourse() {
-        this.api.addCourse(this.courseForm.value, this.downloadUrl, this.downloadUrl2, this.downloadUrl4).then(() => {
+        this.api.addCourse(this.courseForm.value, this.downloadUrl, this.downloadUrl2, this.downloadUrl4, this.isChecked).then(() => {
             this.courseForm.reset();
             this.file1.nativeElement.value = "";
             this.file2.nativeElement.value = "";

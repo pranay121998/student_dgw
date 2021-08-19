@@ -13,6 +13,8 @@ declare var google: any;
 
 export class MapsComponent implements OnInit {
 
+    isChecked = false;
+
     courseForm: FormGroup;
 
     courseID;
@@ -60,13 +62,14 @@ export class MapsComponent implements OnInit {
 
     }
 
-    loadId(id, name, desc, image, price, video) {
+    loadId(id, name, desc, image, price, video, isChecked) {
         this.courseID = id;
         this.courseName = name;
         this.courseDesc = desc;
         this.courseImg = image;
         this.coursePrice = price;
         this.courseVideo = video;
+        this.isChecked = isChecked;
         console.log("Image Video: " + this.courseImg)
         console.log("Course Video: " + this.courseVideo)
     }
@@ -85,8 +88,13 @@ export class MapsComponent implements OnInit {
 
     }
 
+    getStats(event: Event) {
+        console.log(event.target["checked"]);
+        this.isChecked = event.target["checked"];
+    }
+
     updateCourse() {
-        this.api.updateCourse(this.courseID, this.courseForm.value, this.courseImg, this.downloadUrl, this.courseVideo, this.downloadUrl2).then(() => {
+        this.api.updateCourse(this.courseID, this.courseForm.value, this.courseImg, this.downloadUrl, this.courseVideo, this.downloadUrl2, this.isChecked).then(() => {
             this.file1.nativeElement.value = "";
             this.file2.nativeElement.value = "";
             this.api.uploadProgress = new Observable<0>();

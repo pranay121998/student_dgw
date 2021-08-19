@@ -188,15 +188,15 @@ export class ApiService {
     }
   }
 
-  addCourse(course: Course, imageUrl, videoUrl, audioUrl) {
+  addCourse(course: Course, imageUrl, videoUrl, audioUrl, isChecked) {
     return this.afs.collection(this.nameofCourse).add({
       name: course.name,
       description: course.description,
       price: course.price,
       imageUrl: imageUrl,
       video: videoUrl,
-      audio: audioUrl,
       buyers: [],
+      upcomming: isChecked,
     }).then(res => {
       console.log("Course Added");
       this.afs.collection(this.nameofCourse).doc(res.id).update({
@@ -321,7 +321,7 @@ export class ApiService {
     return this.itemCollection.valueChanges();
   }
 
-  updateCourse(courseId, course: Course, image1, image2, video1, video2) {
+  updateCourse(courseId, course: Course, image1, image2, video1, video2, isChecked) {
     this.itemCollection = this.afs.collection<Course>(this.nameofCourse);
     if (!image2) {
       course.imageUrl = image1;
@@ -339,6 +339,7 @@ export class ApiService {
       price: course.price,
       imageUrl: course.imageUrl,
       video: course.video,
+      upcomming: isChecked,
     }).then(() => {
       console.log("Course Update Successfull");
     }).catch(err => {
