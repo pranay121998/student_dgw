@@ -62,6 +62,8 @@ export class PdfsComponent implements OnInit {
   }
 
   updatePDF() {
+
+
     this.api.updatePDF(this.uniqueId, this.pdfID, this.pdfForm.value, this.downloadUrl, this.pdf).then(() => {
       this.clearPDFProgress();
     });
@@ -71,7 +73,8 @@ export class PdfsComponent implements OnInit {
     return this.api.getPDF(this.uniqueId);
   }
 
-  deletePDF(pdfId) {
+
+  deletePDF(pdfId:any) {
     if (window.confirm('Are sure you want to delete this pdf ?')) {
       this.api.deletePDF(this.uniqueId, pdfId);
     }
