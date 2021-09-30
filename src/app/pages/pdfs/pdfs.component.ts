@@ -73,7 +73,7 @@ export class PdfsComponent implements OnInit {
   }
 
 
-  deletePDF(pdfId) {
+  deletePDF(pdfId: any) {
     if (window.confirm('Are sure you want to delete this pdf ?')) {
       this.api.deletePDF(this.uniqueId, pdfId);
     }
