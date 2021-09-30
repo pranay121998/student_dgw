@@ -62,7 +62,6 @@ export class PdfsComponent implements OnInit {
   }
 
   updatePDF() {
-         console.log("Pdfisjs",this.pdfID);
 
     this.api.updatePDF(this.uniqueId, this.pdfID, this.pdfForm.value, this.downloadUrl, this.pdf).then(() => {
       this.clearPDFProgress();
