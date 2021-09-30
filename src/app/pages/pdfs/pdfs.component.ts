@@ -71,9 +71,9 @@ export class PdfsComponent implements OnInit {
     return this.api.getPDF(this.uniqueId);
   }
 
-  deleteAudio(pdfId) {
+  deletePDF(pdfId) {
     if (window.confirm('Are sure you want to delete this pdf ?')) {
-      this.api.deleteAudio(this.uniqueId, pdfId);
+      this.api.deletePDF(this.uniqueId, pdfId);
     }
   }
 
