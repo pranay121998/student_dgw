@@ -37,7 +37,7 @@ export class ChaptersComponent implements OnInit {
       name: ['', Validators.required],
       video: ['', Validators.required]
     })
-  }
+  };
 
   ngOnInit(): void {
     this.uniqueId = this.route.snapshot.paramMap.get('id');

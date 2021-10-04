@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.loginForm.value.email);
     this.auth.SignIn(this.loginForm.value.email, this.loginForm.value.password);
+
   }
 
   signOut() {
