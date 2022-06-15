@@ -9,7 +9,7 @@
               <h5 class="card-title">Admin Login</h5>
             </div>
             <div class="card-body">
-              <form [formGroup]="loginForm">
+              <form [formGroup]="loginForm" (submit)="onSubmit()">
                 <div class="row">
                   <div class="col-md-10 mr-auto ml-auto mb-2">
                     <div class="input-group">

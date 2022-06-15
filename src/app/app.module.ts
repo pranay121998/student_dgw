@@ -9,7 +9,7 @@ import { NavbarModule } from './shared/navbar/navbar.module';
 import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routing';
+import { AppRoutes}  from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
@@ -17,23 +17,13 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "environments/environment";
-import { ChaptersComponent } from './pages/chapters/chapters.component';
-import { AudioComponent } from './pages/audio/audio.component';
-import { PdfsComponent } from './pages/pdfs/pdfs.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    LoginComponent,
-    ChaptersComponent,
-    AudioComponent,
-    PdfsComponent,
-  ],
   imports: [
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes, {
+    RouterModule.forRoot(AppRoutes,{
       useHash: true,
       relativeLinkResolution: 'legacy'
     }),
@@ -44,8 +34,16 @@ import { PdfsComponent } from './pages/pdfs/pdfs.component';
     FixedPluginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    FormsModule
+    
+  ],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
+    LoginComponent,
   ],
   providers: [],
+  // exports:[RouterModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
